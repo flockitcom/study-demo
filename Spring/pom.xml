@@ -4,12 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>study-demo</artifactId>
-        <groupId>com.zq</groupId>
+        <groupId>com.zq.zq</groupId>
         <version>1.0-version</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Spring</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.zq.zq</groupId>
+            <artifactId>Util</artifactId>
+            <version>1.0-version</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <!-- 使打出的包包含 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>*/*.xml</include>
+                    <include>*.yml</include>
+                    <include>*.properties</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 
 
 </project>
