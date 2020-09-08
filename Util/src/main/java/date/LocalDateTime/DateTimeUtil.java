@@ -69,11 +69,8 @@ public class DateTimeUtil {
      *                ,如Calendar.SECOND表示秒
      * @param type    返回的格式,null为默认格式
      */
-    public static Date getAroundDateByUint(Date date, int dateNum, ChronoUnit unit, String type) {
-        LocalDateTime time = Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
-        time = time.plus(dateNum, unit);
-        return Date.from(time.atZone(ZoneId.systemDefault()).toInstant());
-
+    public static LocalDateTime getAroundDateByUint(LocalDateTime date, int dateNum, ChronoUnit unit, String type) {
+        return date.plus(dateNum, unit);
     }
 
     /**
@@ -110,15 +107,6 @@ public class DateTimeUtil {
             log.warn("DateUtil.getDateLongByTime error" + e);
             return 0;
         }
-    }
-
-
-    public static void main(String[] args){
-        Date date = new Date();
-        Date expTime = DateTimeUtil.getAroundDateByUint(date, 1, ChronoUnit.MONTHS, "yyyy-MM-dd");
-        System.out.println(getStringByDate(expTime, null));
-        expTime = DateTimeUtil.getAroundDateByUint(expTime, 3, ChronoUnit.HOURS, null);
-        System.out.println(getStringByDate(expTime, null));
     }
 
 }

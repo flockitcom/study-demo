@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>Spring</module>
         <module>Base</module>
         <module>Temp</module>
         <module>DesignMode</module>
@@ -57,13 +57,6 @@
             <artifactId>druid</artifactId>
             <version>1.1.20</version>
         </dependency>
-
-        <!-- mybatis数据库字段类型映射，可以使用jdk1.9 time包API -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-typehandlers-jsr310</artifactId>
-            <version>1.0.2</version>
-        </dependency>
         <!--mysql结束-->
 
         <!--mybatis-plus开始-->
@@ -85,10 +78,13 @@
             <artifactId>velocity-engine-core</artifactId>
             <version>2.1</version>
         </dependency>
+
+        <!--执行 SQL 分析打印-->
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
             <version>3.9.1</version>
+            <scope>provided</scope>
         </dependency>
         <!--mybatis-plus结束-->
 
