@@ -11,6 +11,7 @@
         <module>DataStructures</module>
         <module>Util</module>
         <module>JDK8</module>
+        <module>Encryption</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -18,7 +19,7 @@
         <version>2.3.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.zq.zq</groupId>
+    <groupId>com.zq</groupId>
     <artifactId>study-demo</artifactId>
     <version>1.0-version</version>
 
