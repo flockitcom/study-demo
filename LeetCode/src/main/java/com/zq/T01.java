@@ -1,36 +1,40 @@
 package com.zq;
 
-
-import java.math.BigDecimal;
+import java.util.Stack;
 
 public class T01 {
 
     public static void main(String[] args) {
     }
 
-    public int removeElement(int[] nums, int val) {
-        int index = 0;
-        int num = 0;
-        int length=nums.length;
-        while (index + num < length) {
-            if (nums[index] == val) {
-                if (index >= length - 1) {
-                    return index;
-                }
-                int temp = index + 1;
-                while (nums[temp] == val) {
-                    if (temp + 1 < length) {
-                        temp++;
-                    } else {
-                        return index;
-                    }
-                }
-                nums[index] = nums[index] ^ nums[temp];
-                nums[temp] = nums[index] ^ nums[temp];
-                nums[index] = nums[index] ^ nums[temp];
-            }
-            index++;
+    public int[] reversePrint(ListNode head) {
+        Stack<Integer> stack = new Stack<>();
+        if (head == null) {
+            return new int[0];
         }
-        return index;
+        ListNode node = head;
+        int size = 0;
+        while (node.next != null) {
+            stack.push(node.val);
+            node = node.next;
+            size++;
+        }
+        stack.push(node.val);
+        node = node.next;
+        size++;
+        int[] num = new int[size];
+        for (int i = 0; i < size; i++) {
+            num[i] = stack.pop();
+        }
+        return num;
+    }
+}
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int x) {
+        val = x;
     }
 }

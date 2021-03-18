@@ -1,5 +1,7 @@
 package date.LocalDateTime;
 
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,8 +14,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
-@Slf4j
+//@Slf4j
 public class DateTimeUtil {
+    private static final Logger log = LoggerFactory.getLogger(Slf4j.class);
+
 
     /**
      * 输出指定日期的格式(null为默认格式)
