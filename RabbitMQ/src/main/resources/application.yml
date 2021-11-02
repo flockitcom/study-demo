@@ -7,6 +7,13 @@ spring:
     username: guest
     password: guest
     virtual-host: famous-product-ranking
+    listener:
+      simple:
+        retry:
+          enabled: false #开启消费者重试
+          max-attempts: 3 #最大重试次数
+          initial-interval: 10000 #重试间隔次数
+
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     dynamic:
@@ -22,7 +29,7 @@ spring:
 mybatis-plus:
   # 配置日志(控制台打印)
   configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cache-enabled: true # 开启二级缓存
   global-config:
     db-config:

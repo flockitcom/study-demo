@@ -1,6 +1,11 @@
 package sort;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
+import java.util.function.IntFunction;
+import java.util.stream.Collectors;
 
 /**
  * 快速排序(选一个标点,比它小放坐标,比他大的放右边,左右在递归)
@@ -10,20 +15,20 @@ import java.util.Random;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] arr = new int[5000000];
+        int[] arr = new int[20];
         Random random = new Random();
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(2000);
+            arr[i] = random.nextInt(20);
         }
-        /*System.out.println("排序之前的数组");
-        System.out.println(Arrays.toString(arr));*/
+        System.out.println("排序之前的数组");
+        System.out.println(Arrays.toString(arr));
         long start = System.currentTimeMillis();
         quickSort(arr);
         long end = System.currentTimeMillis();
-        /*System.out.println("排序之后的数组");
-        System.out.println(Arrays.toString(arr));*/
+        System.out.println("排序之后的数组");
+        System.out.println(Arrays.toString(arr));
 
-        System.out.println("共消耗时间="+(end-start));
+        System.out.println("共消耗时间=" + (end - start));
     }
 
     private static void quickSort(int[] arr) {
@@ -34,7 +39,9 @@ public class QuickSort {
         if (left < right) {
             int l = left;
             int r = right;
-            int temp = arr[right];
+            int[] nums = {arr[left], arr[right], arr[(left + right) / 2]};
+            Arrays.sort(nums);
+            int temp = nums[1];
             while (l < r) {
                 while (l < r && arr[l] < temp) {
                     l++;
@@ -60,7 +67,7 @@ public class QuickSort {
             }
             arr[r] = temp;
             //此时l和R在同一下标(相遇) 左右递归
-            quickSort(arr, left, r - 1);
+            quickSort(arr, left, l - 1);
             quickSort(arr, l + 1, right);
         }
     }

@@ -15,6 +15,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StopWatch;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -49,6 +50,8 @@ public class CommentListener {
             log.error("用户余额不足,userId:" + uid + ",余额:" + balance.getBalance() + ",应需:" + money);
             MyResponse.returnFail(MyExceptionEnum.PARAMS_ERROR, "用户余额不足");
         }
+
+//        int i = 1/0;
         BigDecimal subtract = balance.getBalance().subtract(money);
 
         OBalance balanceNew = new OBalance();

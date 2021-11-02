@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class CodeGenerator {
     public static void main(String[] args) {
-        final String tableName = "dept";
+        final String[] tableName = {"logs","tourist"};
 
 
         // 需要构建一个 代码自动生成器 对象

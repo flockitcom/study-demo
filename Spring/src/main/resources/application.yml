@@ -4,13 +4,22 @@ server:
 mybatis-plus:
   # 配置日志(控制台打印)
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     cache-enabled: true # 开启二级缓存
   global-config:
     db-config:
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
   mapper-locations: classpath:/mybatisMapper/*.xml
+
+#本地测试用看日志
+logging:
+  config: classpath:logback/logback.xml
+  level:
+    com.zq.mapper: debug
+
+printSql:
+  active: true
 
 spring:
   application:
@@ -32,7 +41,7 @@ spring:
   redis:
     database: 0
     host: 129.211.28.148
-    port: 6381
+    port: 6379
     timeout: 1000 # 连接超时时间（毫秒）
     jedis:
       pool:

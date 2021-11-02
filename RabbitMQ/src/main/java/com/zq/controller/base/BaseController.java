@@ -10,6 +10,7 @@ import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
  * @author zqian
  * @date 2020/12/31
  */
-@RestController
 @Slf4j
+@RestControllerAdvice
 public class BaseController {
 
     /**

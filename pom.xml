@@ -13,7 +13,6 @@
         <module>JDK8</module>
         <module>LeetCode</module>
         <module>Zookeeper</module>
-        <module>SpringUtils</module>
         <module>HutoolUtils</module>
         <module>Spring</module>
         <module>RabbitMQ</module>
@@ -42,6 +41,14 @@
                 <artifactId>fastjson</artifactId>
                 <version>1.2.60</version>
             </dependency>
+
+            <!-- 谷歌开源的gson工具类 -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.6</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -111,6 +118,17 @@
                 <artifactId>org.apache.commons.codec</artifactId>
                 <version>1.8</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>4.9.1</version>
+            </dependency>
             <!--工具类 结束-->
 
             <!--hutool工具包-->
@@ -146,7 +164,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 
 
     <build>

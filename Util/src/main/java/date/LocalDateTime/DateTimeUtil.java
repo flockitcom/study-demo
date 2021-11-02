@@ -87,30 +87,24 @@ public class DateTimeUtil {
      * @param minute 分(0-59)
      * @param second 秒(0-59)
      */
-    public static long getDateLongByTime(Date date, Integer month, Integer day, Integer hour, Integer minute, Integer second){
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            if (month != null && month >= 0 && month <= 11) {
-                calendar.set(Calendar.MONTH, month);
-            }
-            if (day != null && day >= 0 && day <= 30) {
-                calendar.set(Calendar.DAY_OF_MONTH, day);
-            }
-            if (hour != null && hour >= 0 && hour <= 23) {
-                calendar.set(Calendar.HOUR_OF_DAY, hour);
-            }
-            if (minute != null && minute >= 0 && minute <= 59) {
-                calendar.set(Calendar.MINUTE, minute);
-            }
-            if (second != null && second >= 0 && second < 59) {
-                calendar.set(Calendar.SECOND, second);
-            }
-            return calendar.getTime().getTime();
-        } catch (Exception e) {
-            log.warn("DateUtil.getDateLongByTime error" + e);
-            return 0;
+    public static LocalDateTime getDateByTime(LocalDateTime date, Integer month, Integer day, Integer hour, Integer minute, Integer second){
+
+        if (month != null && month >= 1 && month <= 12) {
+            date = date.withMonth(month);
         }
+        if (day != null && day >= 1 && day <= 31) {
+            date = date.withDayOfMonth(day);
+        }
+        if (hour != null && hour >= 0 && hour <= 23) {
+            date = date.withHour(hour);
+        }
+        if (minute != null && minute >= 0 && minute <= 59) {
+            date = date.withMinute(minute);
+        }
+        if (second != null && second >= 0 && second < 59) {
+            date = date.withSecond(second);
+        }
+        return date;
     }
 
 }
