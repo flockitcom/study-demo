@@ -11,10 +11,11 @@ import java.util.Queue;
 public class MinHeap {
     public static void main(String[] args) {
         // 初始化小顶堆
-        Queue<Integer> heap = new PriorityQueue<>();
+        Queue<Integer> heap = new PriorityQueue<Integer>();
 
         // 元素入堆
         heap.add(1);
+        heap.add(2);
         heap.add(4);
         heap.add(2);
         heap.add(6);
