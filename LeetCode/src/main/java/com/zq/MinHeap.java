@@ -16,6 +16,7 @@ public class MinHeap {
 
         // 元素入堆
         heap.add(1);
+        heap.add(1);
         heap.add(4);
         heap.add(2);
         heap.add(6);
