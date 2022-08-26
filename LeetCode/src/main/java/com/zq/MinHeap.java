@@ -5,12 +5,13 @@ import java.util.Queue;
 
 /**
  * 小顶堆
+ *
  * @author zqian
  * @date 2021/1/21
  */
 public class MinHeap {
     public static void main(String[] args) {
-        // 初始化小顶堆
+        // 初始化小顶堆11
         Queue<Integer> heap = new PriorityQueue<Integer>();
 
         // 元素入堆
