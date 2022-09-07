@@ -12,10 +12,6 @@
         <module>Util</module>
         <module>JDK8</module>
         <module>LeetCode</module>
-        <module>Zookeeper</module>
-        <module>HutoolUtils</module>
-        <module>Spring</module>
-        <module>RabbitMQ</module>
     </modules>
     <groupId>com.zq</groupId>
     <artifactId>study-demo</artifactId>
@@ -34,21 +30,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-            <!--fastjson序列化-->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>1.2.60</version>
-            </dependency>
-
-            <!-- 谷歌开源的gson工具类 -->
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>2.8.6</version>
-            </dependency>
-
 
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -90,78 +71,68 @@
                 <version>3.0.0</version>
             </dependency>
 
-            <!--fastDFS-->
-            <dependency>
-                <groupId>net.oschina.zcx7878</groupId>
-                <artifactId>fastdfs-client-java</artifactId>
-                <version>1.27.0.0</version>
-            </dependency>
-
-            <!--工具类 开始-->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-pool2</artifactId>
-                <version>2.8.0</version>
-            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.7</version>
             </dependency>
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>2.6</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.directory.studio</groupId>
-                <artifactId>org.apache.commons.codec</artifactId>
-                <version>1.8</version>
-            </dependency>
 
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.5.6</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squareup.okhttp3</groupId>
-                <artifactId>okhttp</artifactId>
-                <version>4.9.1</version>
-            </dependency>
+
             <!--工具类 结束-->
 
-            <!--hutool工具包-->
+            <!-- log相关 begin-->
+            <!-- slf4j核心包-->
             <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>5.5.7</version>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.25</version>
+            </dependency>
+            <!--用于与slf4j保持桥接-->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>2.9.1</version>
+            </dependency>
+            <!-- log4j -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.9.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.9.1</version>
+            </dependency>
+            <!-- log相关 end-->
+
+            <!-- 谷歌开源的gson工具类 -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.6</version>
             </dependency>
 
-            <!--反序列化 php-->
+            <!-- Guava -->
             <dependency>
-                <groupId>org.sction</groupId>
-                <artifactId>phprpc</artifactId>
-                <version>3.0.2</version>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>31.0.1-jre</version>
+            </dependency>
+
+            <!-- zookeeper begin-->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>2.12.0</version>
             </dependency>
 
             <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>5.6.0</version>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>2.12.0</version>
             </dependency>
-
-            <!--zookeeper-->
-            <dependency>
-                <groupId>org.apache.zookeeper</groupId>
-                <artifactId>zookeeper</artifactId>
-                <version>3.4.6</version>
-            </dependency>
-            <dependency>
-                <groupId>com.101tec</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>0.11</version>
-            </dependency>
+            <!-- zookeeper end-->
         </dependencies>
     </dependencyManagement>
 
@@ -171,6 +142,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
         </plugins>
     </build>

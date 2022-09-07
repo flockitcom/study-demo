@@ -10,25 +10,25 @@ import java.util.Deque;
  */
 public class Stack<E> {
 
-    private Deque<E> queue;
+    private Deque<E> stack;
 
     public Stack() {
-        queue = new ArrayDeque<>();
+        stack = new ArrayDeque<>();
     }
 
     public void push(E e) {
-        queue.addLast(e);
+        stack.push(e);
     }
 
     public E pop() {
-        return queue.pollLast();
+        return stack.pop();
     }
 
     public E peek() {
-        return queue.peekLast();
+        return stack.peek();
     }
 
-    public boolean isEmpty() {
-        return queue.size() == 0;
+    public boolean empty() {
+        return stack.size() == 0;
     }
 }

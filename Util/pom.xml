@@ -30,17 +30,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-
-        <!--反序列化 php-->
-        <dependency>
-            <groupId>org.sction</groupId>
-            <artifactId>phprpc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
     </dependencies>
 
 
