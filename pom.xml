@@ -12,6 +12,7 @@
         <module>Util</module>
         <module>JDK8</module>
         <module>LeetCode</module>
+        <module>web</module>
     </modules>
     <groupId>com.zq</groupId>
     <artifactId>study-demo</artifactId>
@@ -29,6 +30,26 @@
                 <version>2.3.4.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+
+            <!-- web支持 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>2.5.2</version>
+                <exclusions><!-- 去掉springboot默认配置 -->
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- spring boot AOP -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-aop</artifactId>
             </dependency>
 
             <dependency>
@@ -64,47 +85,29 @@
             </dependency>
             <!--mybatis-plus结束-->
 
-            <!--swagger-->
+            <!-- swagger自动文档 begin -->
             <dependency>
                 <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>3.0.0</version>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>2.9.2</version>
             </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>1.9.2</version>
+            </dependency>
+            <!-- swagger自动文档 end -->
 
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.7</version>
             </dependency>
-
-
-            <!--工具类 结束-->
-
-            <!-- log相关 begin-->
-            <!-- slf4j核心包-->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.25</version>
-            </dependency>
-            <!--用于与slf4j保持桥接-->
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-slf4j-impl</artifactId>
-                <version>2.9.1</version>
-            </dependency>
-            <!-- log4j -->
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>2.9.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>2.9.1</version>
-            </dependency>
-            <!-- log相关 end-->
 
             <!-- 谷歌开源的gson工具类 -->
             <dependency>
@@ -135,6 +138,36 @@
             <!-- zookeeper end-->
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <!--工具类 结束-->
+
+        <!-- log相关 begin-->
+        <!-- slf4j核心包-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <!--用于与slf4j保持桥接-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+        <!-- log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+        <!-- log相关 end-->
+    </dependencies>
 
 
     <build>

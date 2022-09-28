@@ -1,18 +1,39 @@
 package com.zq;
 
+import java.util.*;
+
 class Solution {
 
-    public int minCostClimbingStairs(int[] cost) {
-        int[] dp = new int[cost.length];
-        for (int i = 2; i < cost.length; i++) {
-            dp[i] = Math.min(dp[i - 2] + cost[i - 2], dp[i - 1] + cost[i - 1]);
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        Deque<Integer> deque = new ArrayDeque<>();
+        int[] result = new int[nums1.length];
+        Arrays.fill(result, -1);
+        Map<Integer, Integer> map = new HashMap<>(nums1.length);
+        for (int i = 0; i < nums1.length; i++) {
+            map.put(nums1[i], i);
         }
-        return Math.min(dp[cost.length - 2] + cost[cost.length - 2], dp[cost.length - 1] + cost[cost.length - 1]);
+        deque.push(0);
+        for (int i = 1; i < nums2.length; i++) {
+            if (nums2[i] <= nums2[deque.peek()]) {
+                deque.push(i);
+            } else {
+                while (deque.size() > 0 && nums2[i] > nums2[deque.peek()]) {
+                    if (map.containsKey(nums2[deque.peek()])) {
+                        Integer peek = deque.peek();
+                        result[peek] = i - peek;
+                    }
+                    deque.pop();
+                }
+                deque.push(i);
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println("" + solution.minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1}));
+        Object o = solution.nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 3, 4, 2});
+        System.out.println("" + o);
     }
 }
 
