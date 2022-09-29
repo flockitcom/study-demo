@@ -22,11 +22,11 @@ public class Swagger2Config {
     /**
      * 公司官网
      */
-    private static final String OFFICIAL_WEBSITE = "http://www.yiyan-info.cn/";
+    private static final String OFFICIAL_WEBSITE = "http://www.flockitcom.cn/";
     /**
      * 版权
      */
-    private static final String LICENSE = "杭州益眼信息科技有限公司";
+    private static final String LICENSE = "flockitcom";
 
     /**
      * 创建文档
@@ -36,7 +36,7 @@ public class Swagger2Config {
      */
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2).groupName(" 全部接口文档")
+        return new Docket(DocumentationType.SWAGGER_2).groupName("全部接口文档")
                 .apiInfo(apiInfo()).select().apis(RequestHandlerSelectors.any()).paths(PathSelectors.any()).build();
     }
 
