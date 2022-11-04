@@ -1,33 +1,37 @@
 package com.zq;
 
 class Solution {
-    public int wiggleMaxLength(int[] nums) {
-        if (nums.length <= 1) {
-            return nums.length;
-        }
-
-        //当前差值
-        int curDiff = 0;
-        //上一个差值
-        int preDiff = 0;
-        int count = 1;
-        for (int i = 1; i < nums.length; i++) {
-            //得到当前差值
-            curDiff = nums[i] - nums[i - 1];
-            //如果当前差值和上一个差值为一正一负
-            //等于0的情况表示初始时的preDiff
-            if ((curDiff > 0 && preDiff <= 0) || (curDiff < 0 && preDiff >= 0)) {
-                count++;
-                preDiff = curDiff;
+    public int maxProfit(int[] prices) {
+        //收入
+        int money = 0;
+        //成本价
+        int cost = prices[0];
+        //出售价
+        int sell = prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            //当前价小于成本价，选择买入
+            if (prices[i] < cost) {
+                money += (sell - cost);
+                cost = prices[i];
+                sell = cost;
+            }
+            if (prices[i] > sell) {
+                //当前价大于卖价
+                sell = prices[i];
+            } else {
+                //当前价小于卖价，卖价为之前存的售价
+                money += (sell - cost);
+                cost = prices[i];
+                sell = cost;
             }
         }
-        return count;
+        return money + (sell - cost);
     }
 
     //g = [1,2,3], s = [1,1]
     public static void main(String[] args) {
         Solution solution = new Solution();
-        Object o = solution.wiggleMaxLength(new int[]{1, 7, 4, 9, 2, 5});
+        Object o = solution.maxProfit(new int[]{2, 4, 1});
         System.out.println(o);
     }
 }
