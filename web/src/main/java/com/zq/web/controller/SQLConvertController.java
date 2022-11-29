@@ -18,8 +18,14 @@ public class SQLConvertController {
 
     @ApiOperation(value = "ORACLE SQL转换", notes = "")
     @RequestMapping(value = "/oracle-convert", method = RequestMethod.POST)
-    public String listPrintVoucher(@RequestBody String sql) {
-        return SqlConvertUtil.sqlConvert(sql);
+    public String oracleConvert(@RequestBody String sql) {
+        return SqlConvertUtil.sqlConvert(sql, "1");
+    }
+
+    @ApiOperation(value = "MySQL SQL转换", notes = "")
+    @RequestMapping(value = "/mysql-convert", method = RequestMethod.POST)
+    public String mysqlConvert(@RequestBody String sql) {
+        return SqlConvertUtil.sqlConvert(sql, "2");
     }
 
     //---------------------------------------------------------

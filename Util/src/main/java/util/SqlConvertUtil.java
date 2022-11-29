@@ -13,7 +13,10 @@ public class SqlConvertUtil {
     public static final String TYPE_STRING = "String";
     public static final String TYPE_DATE = "Timestamp";
 
-    public static String sqlConvert(String sql) {
+    public static final String DATABASE_TYPE_ORACLE = "1";
+    public static final String DATABASE_TYPE_MYSQL = "2";
+
+    public static String sqlConvert(String sql, String databaseType) {
         sql = sql.trim();
         //1.分行
         String[] split = sql.split("\n");
@@ -51,9 +54,9 @@ public class SqlConvertUtil {
             String type = parArr[i].substring(leftBrackets + 1, rightBrackets);
             String par = parArr[i].substring(0, leftBrackets).trim();
 
-            if (TYPE_DATE.equals(type)) {
+            if (TYPE_DATE.equals(type) && DATABASE_TYPE_ORACLE.equals(databaseType)) {
                 parArr[i] = String.format("TO_DATE('%s', 'yyyy-mm-dd hh24:mi:ss')", par.substring(0, par.lastIndexOf(".")));
-            } else if (TYPE_STRING.equals(type)) {
+            } else if (TYPE_STRING.equals(type) || (TYPE_DATE.equals(type) && DATABASE_TYPE_MYSQL.equals(databaseType))) {
                 parArr[i] = "'" + par + "'";
             } else {
                 parArr[i] = par;
