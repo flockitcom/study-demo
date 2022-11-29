@@ -13,13 +13,13 @@ import util.SqlConvertUtil;
 @CrossOrigin
 @Api(tags = "SQL转换 数据接口")
 @RestController
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/sql")
+public class SQLConvertController {
 
-    @ApiOperation(value = "test", notes = "")
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public String listPrintVoucher(@RequestBody String s) {
-        return SqlConvertUtil.sqlConvert(s);
+    @ApiOperation(value = "ORACLE SQL转换", notes = "")
+    @RequestMapping(value = "/oracle-convert", method = RequestMethod.POST)
+    public String listPrintVoucher(@RequestBody String sql) {
+        return SqlConvertUtil.sqlConvert(sql);
     }
 
     //---------------------------------------------------------
