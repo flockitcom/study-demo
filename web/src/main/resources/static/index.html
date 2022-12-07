@@ -65,8 +65,6 @@
 </html>
 <script>
 
-  var hostIp="http://127.0.0.1:8081/";
-
   async function  clickSql  (){
     const res=await document.getElementById("mytt").value;
     console.log(res);
@@ -76,7 +74,7 @@
 	    console.log("11111",xhr)
       document.getElementById("out").innerHTML=xhr.responseText;
       };
-      xhr.open("post", hostIp+"/web/sql/mysql-convert", true);
+      xhr.open("post", "/web/sql/mysql-convert", true);
       xhr.send(res);
     }
   }
@@ -90,7 +88,7 @@
 	    console.log("11111",xhr)
       document.getElementById("out").innerHTML=xhr.responseText;
       };
-      xhr.open("post", hostIp+"/web/sql/oracle-convert", true);
+      xhr.open("post", "/web/sql/oracle-convert", true);
       xhr.send(res);
     }
   }
