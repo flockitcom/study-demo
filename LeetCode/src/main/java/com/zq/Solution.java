@@ -2,40 +2,39 @@ package com.zq;
 
 class Solution {
 
-    int[][] dp;
-    int result = 1;
+    public int findTargetSumWays(int[] nums, int target) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
 
-    public int integerBreak(int n) {
-        dp = new int[n][2];
+        if (nums.length == 1 && sum == Math.abs(target)) {
+            return 1;
+        }
 
-        for (int i = 0; i < n; i++) {
-            if (i == 0) {
-                dp[i] = new int[]{0, 1};
-            } else {
-                if (i % 2 != 0) {
-                    dp[i][0] = dp[i - 1][0] + 1;
-                    dp[i][1] = dp[i - 1][1];
-                } else {
-                    dp[i][0] = dp[i - 1][0];
-                    dp[i][1] = dp[i - 1][1] + 1;
-                }
+        //不可能等于目标和
+        if (Math.abs(target) > sum || (sum + target) % 2 != 0) {
+            return 0;
+        }
+
+        int[] dp = new int[(sum + target) / 2 + 1];
+
+        //初始化
+
+        dp[0] = 1;
+        if (nums[0] == 0) {
+            dp[nums[0]] = 2;
+        } else {
+            dp[nums[0]] = 1;
+        }
+
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = (sum + target) / 2; j >= nums[i]; j--) {
+                dp[j] += dp[j - nums[i]];
             }
         }
-        if (n > 3) {
-            maxTake(n);
-        } else {
-            return dp[n - 1][0] * dp[n - 1][1];
-        }
-        return result;
-    }
 
-    private void maxTake(int nums) {
-        if (nums <= 3) {
-            result = result * nums;
-            return;
-        }
-        maxTake(dp[nums - 1][0]);
-        maxTake(dp[nums - 1][1]);
+        return dp[(sum + target) / 2];
     }
 
 
@@ -62,7 +61,7 @@ class Solution {
 //        node6.right = node10;
 
         Solution solution = new Solution();
-        Object o = solution.integerBreak(8);
+        Object o = solution.findTargetSumWays(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 1}, 1);
         System.out.println(o);
     }
 }
