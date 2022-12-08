@@ -2,39 +2,47 @@ package com.zq;
 
 class Solution {
 
-    public int findTargetSumWays(int[] nums, int target) {
-        int sum = 0;
-        for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
-        }
+    public int findMaxForm(String[] strs, int m, int n) {
+        int[][] dp = new int[m + 1][n + 1];
 
-        if (nums.length == 1 && sum == Math.abs(target)) {
-            return 1;
-        }
-
-        //不可能等于目标和
-        if (Math.abs(target) > sum || (sum + target) % 2 != 0) {
-            return 0;
-        }
-
-        int[] dp = new int[(sum + target) / 2 + 1];
-
-        //初始化
-
-        dp[0] = 1;
-        if (nums[0] == 0) {
-            dp[nums[0]] = 2;
-        } else {
-            dp[nums[0]] = 1;
-        }
-
-        for (int i = 1; i < nums.length; i++) {
-            for (int j = (sum + target) / 2; j >= nums[i]; j--) {
-                dp[j] += dp[j - nums[i]];
+        int firstM = 0;
+        int firstN = 0;
+        for (int j = 0; j < strs[0].length(); j++) {
+            if (strs[0].charAt(j) == '0') {
+                firstM++;
+            } else {
+                firstN++;
             }
         }
+        dp[firstM][firstN] = 1;
 
-        return dp[(sum + target) / 2];
+        for (int i = 1; i < strs.length; i++) {
+            int size0 = 0;
+            int size1 = 0;
+            for (int j = 0; j < strs[i].length(); j++) {
+                if (strs[i].charAt(j) == '0') {
+                    size0++;
+                } else {
+                    size1++;
+                }
+            }
+
+            for (int j = m; j >= 1; j--) {
+                for (int k = n; k >= 1; k--) {
+                    int have = 0;
+                    if (j >= size0 && k >= size1) {
+                        have = dp[j - size0][k - size1] + 1;
+                    }
+                    if (have == dp[j][k] && have != 0) {
+                        dp[j][k] = dp[j][k] + 1;
+                    } else {
+                        dp[j][k] = Math.max(dp[j][k], have);
+                    }
+
+                }
+            }
+        }
+        return dp[m][n];
     }
 
 
@@ -61,7 +69,7 @@ class Solution {
 //        node6.right = node10;
 
         Solution solution = new Solution();
-        Object o = solution.findTargetSumWays(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 1}, 1);
+        Object o = solution.findMaxForm(new String[]{"10", "0001", "111001", "1", "0"}, 5, 3);
         System.out.println(o);
     }
 }
