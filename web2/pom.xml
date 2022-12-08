@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>web</artifactId>
+    <artifactId>web2</artifactId>
 
     <dependencies>
         <!-- web支持 -->
@@ -47,7 +47,7 @@
     </dependencies>
 
     <build>
-        <finalName>web</finalName>
+        <finalName>web2</finalName>
 
         <resources>
             <resource>

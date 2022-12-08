@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mybatis SQL 格式化工具</title>
+  </head>
+  <body>
+    <div id="input">
+      <!-- S 主体 -->
+      <div>
+        <div style="width: 100%;">
+            <textarea
+              id="mytt"
+              style="font-size: 16px;width: 100%;height: 250px;"
+              type="textarea"
+              placeholder="
+              
+转换前的
+  
+     2021-08-13 22:33:32.666 DEBUG 15984 --- [nio-8080-exec-8] c.g.b.mapper.TbUserMapper.selectPage   :==>Preparing: SELECT COUNT(1)FROM tb_user
+     2021-08-13 22:33:32.666 DEBUG 15984 --- [nio-8080-exec-8] c.g.b.mapper.TbUserMapper.selectPage   : = = >parameters:
+     2021-08-13 22:33:32.666 DEBUG 15984 --- [nio-8080-exec-8] c.g.b.mapper.TbUserMapper.selectPage   : = = >Preparing:SELECT id,username,password,state,phone,email,createtime,updatetime,last_login_time FROM tb_user LIMIT ?,?
+     2021-08-13 22:33:32.666 DEBUG 15984 --- [nio-8080-exec-8] c.g.b.mapper.TbUserMapper.selectPage   : = = >parameters:0(Long),10(Long)
+     2021-08-13 22:33:32.666 DEBUG 15984 --- [nio-8080-exec-8] c.g.b.mapper.TbUserMapper.selectPage   : < = =   Total: 1
+              "
+            ></textarea>
+          </div>
+          <div
+            style="margin: 10px auto;width: 100%;text-align: center;"
+
+            class="code-row-bg"
+          >
+            <button  style="font-size: 14px;background-color: #47cb89;color: aliceblue;border: none;width: 100px;height: 30px;"  onclick="clickSql()">
+              MySQL转换
+            </button>
+            <button  style="margin-left: 10px; font-size: 14px;background-color: #47cb89;color: aliceblue;border: none;width: 100px;height: 30px;" onclick="clickOracle()">
+              ORACLE转换
+            </button>
+            <button  style="margin-left: 10px; font-size: 14px;background-color: #ffad33;color: aliceblue;border: none;width: 100px;height: 30px;" onclick="clickClear()">
+              清除
+            </button>
+          </div>
+          <div style="width: 100%;">
+            <textarea
+            id="out"
+              style="font-size: 16px;width: 100%;height: 380px;font-weight: 500;padding: 80px 0px; box-sizing: border-box;"
+              type="textarea"
+              placeholder="
+              
+转换后的SQL
+  
+     SELECT COUNT(1) FROM tb_user;
+     
+     SELECT id,username,password,state ,phone,email,createtime,updatetime,last_login_time FROM tb_user LIMIT 0,10
+              "
+            ></textarea>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+
+  async function  clickSql  (){
+    const res=await document.getElementById("mytt").value;
+    console.log(res);
+    if(res){
+      let xhr = new XMLHttpRequest();
+      xhr.onload=function(){
+	    console.log("11111",xhr)
+      document.getElementById("out").innerHTML=xhr.responseText;
+      };
+      xhr.open("post", "/web/sql/mysql-convert", true);
+      xhr.send(res);
+    }
+  }
+
+  async function  clickOracle  (){
+    const res=await document.getElementById("mytt").value;
+    console.log(res);
+    if(res){
+      let xhr = new XMLHttpRequest();
+      xhr.onload=function(){
+	    console.log("11111",xhr)
+      document.getElementById("out").innerHTML=xhr.responseText;
+      };
+      xhr.open("post", "/web/sql/oracle-convert", true);
+      xhr.send(res);
+    }
+  }
+
+  function clickClear(){
+    document.getElementById("mytt").value="";
+    document.getElementById("out").innerHTML=""
+  }
+
+
+
+
+
+
+</script>

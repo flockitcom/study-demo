@@ -13,6 +13,7 @@
         <module>JDK8</module>
         <module>LeetCode</module>
         <module>web</module>
+        <module>web2</module>
     </modules>
     <groupId>com.zq</groupId>
     <artifactId>study-demo</artifactId>
