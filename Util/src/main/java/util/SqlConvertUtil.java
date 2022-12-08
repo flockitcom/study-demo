@@ -56,7 +56,9 @@ public class SqlConvertUtil {
 
             if (TYPE_DATE.equals(type) && DATABASE_TYPE_ORACLE.equals(databaseType)) {
                 parArr[i] = String.format("TO_DATE('%s', 'yyyy-mm-dd hh24:mi:ss')", par.substring(0, par.lastIndexOf(".")));
-            } else if (TYPE_STRING.equals(type) || (TYPE_DATE.equals(type) && DATABASE_TYPE_MYSQL.equals(databaseType))) {
+            } else if (TYPE_DATE.equals(type) && DATABASE_TYPE_MYSQL.equals(databaseType)) {
+                parArr[i] = "'" + par.substring(0, par.lastIndexOf(".")) + "'";
+            } else if (TYPE_STRING.equals(type)) {
                 parArr[i] = "'" + par + "'";
             } else {
                 parArr[i] = par;
