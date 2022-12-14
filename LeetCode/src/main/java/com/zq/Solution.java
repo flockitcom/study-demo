@@ -2,47 +2,30 @@ package com.zq;
 
 class Solution {
 
-    public int findMaxForm(String[] strs, int m, int n) {
-        int[][] dp = new int[m + 1][n + 1];
+    public int change(int amount, int[] coins) {
+        if (amount == 0) {
+            return 1;
+        }
 
-        int firstM = 0;
-        int firstN = 0;
-        for (int j = 0; j < strs[0].length(); j++) {
-            if (strs[0].charAt(j) == '0') {
-                firstM++;
-            } else {
-                firstN++;
+        if (coins.length == 1) {
+            return amount % coins[0] == 0 ? 1 : 0;
+        }
+
+        int[] dp = new int[amount + 1];
+
+        //初始化
+        for (int i = 0; i <= amount; i++) {
+            if (i % coins[0] == 0) {
+                dp[i] = 1;
             }
         }
-        dp[firstM][firstN] = 1;
 
-        for (int i = 1; i < strs.length; i++) {
-            int size0 = 0;
-            int size1 = 0;
-            for (int j = 0; j < strs[i].length(); j++) {
-                if (strs[i].charAt(j) == '0') {
-                    size0++;
-                } else {
-                    size1++;
-                }
-            }
-
-            for (int j = m; j >= 1; j--) {
-                for (int k = n; k >= 1; k--) {
-                    int have = 0;
-                    if (j >= size0 && k >= size1) {
-                        have = dp[j - size0][k - size1] + 1;
-                    }
-                    if (have == dp[j][k] && have != 0) {
-                        dp[j][k] = dp[j][k] + 1;
-                    } else {
-                        dp[j][k] = Math.max(dp[j][k], have);
-                    }
-
-                }
+        for (int i = 1; i < coins.length; i++) {
+            for (int j = coins[i]; j <= amount; j++) {
+                dp[j] = dp[j] + dp[j - coins[i]];
             }
         }
-        return dp[m][n];
+        return dp[amount];
     }
 
 
@@ -69,7 +52,7 @@ class Solution {
 //        node6.right = node10;
 
         Solution solution = new Solution();
-        Object o = solution.findMaxForm(new String[]{"10", "0001", "111001", "1", "0"}, 5, 3);
+        Object o = solution.change(500, new int[]{2, 7});
         System.out.println(o);
     }
 }
