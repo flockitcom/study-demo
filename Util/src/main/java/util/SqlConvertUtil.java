@@ -47,11 +47,10 @@ public class SqlConvertUtil {
         //3.获取变量列表
         int paramtersIndex = paramtersStr.indexOf(PARAMTERS) + PARAMTERS.length() + 1;
         paramtersStr = paramtersStr.substring(paramtersIndex);
-        String[] parArr = paramtersStr.split(",");
+        String[] parArr = paramtersStr.split("\\),");
         for (int i = 0; i < parArr.length; i++) {
             int leftBrackets = parArr[i].indexOf("(");
-            int rightBrackets = parArr[i].indexOf(")");
-            String type = parArr[i].substring(leftBrackets + 1, rightBrackets);
+            String type = parArr[i].substring(leftBrackets + 1);
             String par = parArr[i].substring(0, leftBrackets).trim();
 
             if (TYPE_DATE.equals(type) && DATABASE_TYPE_ORACLE.equals(databaseType)) {
