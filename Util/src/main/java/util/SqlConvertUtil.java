@@ -52,6 +52,10 @@ public class SqlConvertUtil {
             int leftBrackets = parArr[i].indexOf("(");
             String type = parArr[i].substring(leftBrackets + 1);
             String par = parArr[i].substring(0, leftBrackets).trim();
+            // 最后一个去掉右括号
+            if (i == parArr.length - 1) {
+                type = type.substring(0, type.length() - 1);
+            }
 
             if (TYPE_DATE.equals(type) && DATABASE_TYPE_ORACLE.equals(databaseType)) {
                 parArr[i] = String.format("TO_DATE('%s', 'yyyy-mm-dd hh24:mi:ss')", par.substring(0, par.lastIndexOf(".")));
