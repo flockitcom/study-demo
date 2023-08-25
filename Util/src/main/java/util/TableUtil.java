@@ -4,7 +4,7 @@ public class TableUtil {
     public static void main(String[] args) {
 
         String s = "表英文名\t表中文名\n" +
-                "字段\t含义\t类型\t是否必填\t备注";
+                "语雀复制语句";
         createTable(s);
 
     }
@@ -28,7 +28,11 @@ public class TableUtil {
         for (int i = 1; i < tableSplit.length; i++) {
 
             String[] column = tableSplit[i].split("\t");
+            if (column.length < 1) {
+                continue;
+            }
 
+            // 处理字段sql语句
             handleColumnSqlCode(column, columnBuilder);
 
             // 处理主键
@@ -69,13 +73,12 @@ public class TableUtil {
      * @param commentBuilder 备注
      */
     public static void handleCommentSqlCode(String tableName, String tableComment, String[] column, StringBuilder commentBuilder) {
-
-        commentBuilder.append("comment on table ").append(tableName);
-
         if (column != null) {
+            commentBuilder.append("comment on column ").append(tableName);
             commentBuilder.append(".").append(column[0]).append(" is '").append(columnComment(column)).append("\n");
         } else {
-            commentBuilder.append(" is ").append(tableComment).append("\n");
+            commentBuilder.append("comment on table ").append(tableName);
+            commentBuilder.append(" is '").append(tableComment).append("';").append("\n");
         }
     }
 
@@ -87,7 +90,7 @@ public class TableUtil {
      */
     public static String columnComment(String[] column) {
         if (column.length > 4 && column[4].contains("enum")) {
-            return column[1] + "\t" + column[4] + ";";
+            return column[1] + " " + column[4] + "';";
         }
         return column[1] + "';";
     }
