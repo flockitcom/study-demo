@@ -3,13 +3,19 @@ package util;
 public class TableUtil {
     public static void main(String[] args) {
 
-        String s = "表英文名\t表中文名\n" +
+        String s = "E_FIN_DC_DEF_RECEIVE\t优惠券定义领用\n" +
                 "语雀复制语句";
-        createTable(s);
+        createTable(s, false);
 
     }
 
-    public static void createTable(String table) {
+    /**
+     * 创建表sql语句
+     *
+     * @param table        表结构语句
+     * @param oldTableFlag 是否为旧表结构 true - 是，false - 否
+     */
+    public static void createTable(String table, boolean oldTableFlag) {
 
         String[] tableSplit = table.split("\n");
         String[] tableInfo = tableSplit[0].split("\t");
@@ -33,7 +39,7 @@ public class TableUtil {
             }
 
             // 处理字段sql语句
-            handleColumnSqlCode(column, columnBuilder);
+            handleColumnSqlCode(column, columnBuilder, oldTableFlag);
 
             // 处理主键
             handlePrimaryKey(column, pkBuilder);
@@ -56,10 +62,11 @@ public class TableUtil {
      *
      * @param column        字段
      * @param stringBuilder 字段拼接
+     * @param oldTableFlag  旧表标志
      */
-    public static void handleColumnSqlCode(String[] column, StringBuilder stringBuilder) {
-        stringBuilder.append(column[0]).append("\t").append(column[2]);
-        if (column.length > 3 && "是".equals(column[3])) {
+    public static void handleColumnSqlCode(String[] column, StringBuilder stringBuilder, boolean oldTableFlag) {
+        stringBuilder.append(column[0]).append("\t").append(oldTableFlag ? column[3] : column[2]);
+        if (column.length > 3 && "是".equals(oldTableFlag ? column[2] : column[3])) {
             stringBuilder.append("\t").append("not null");
         }
         stringBuilder.append(",\n");
@@ -102,7 +109,11 @@ public class TableUtil {
      * @param pkBuilder pkBuilder
      */
     public static void handlePrimaryKey(String[] column, StringBuilder pkBuilder) {
-        if (column.length < 5 || !column[4].contains("PK")) {
+        if (column.length < 5) {
+            return;
+        }
+        if (!column[4].contains("pk") && !column[4].contains("PK")
+                && !column[4].contains("Pk") && !column[4].contains("pK")) {
             return;
         }
 
