@@ -8,6 +8,9 @@ import lombok.Data;
  */
 @Data
 public class Person {
+    /**
+     * 姓名
+     */
     private String name;
     private Integer age;
 }
