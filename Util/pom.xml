@@ -29,6 +29,19 @@
             <artifactId>protobuf-java</artifactId>
         </dependency>
         <!--    protocol buffers end        -->
+
+        <!-- 谷歌开源的gson工具类 -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <!-- openCsv start -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+        </dependency>
+        <!-- openCsv end -->
     </dependencies>
 
 

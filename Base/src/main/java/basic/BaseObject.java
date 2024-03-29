@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 基类，提供一个标准gson工具和logger工具
  *
- * @author Tirpitz
+ * @author zhangqian
  */
 public abstract class BaseObject {
 

@@ -1,4 +1,6 @@
-package util;
+package util.serialize;
+
+import com.google.protobuf.InvalidProtocolBufferException;
 
 /**
  * protocol buffers
@@ -6,7 +8,7 @@ package util;
  * @author zhangqian
  */
 public class ProtoBufUtil {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidProtocolBufferException {
         ResponseOuterClass.Response.Builder builder = ResponseOuterClass.Response.newBuilder();
         // 设置字段值
         builder.setData("hello www.tizi365.com");
@@ -17,11 +19,8 @@ public class ProtoBufUtil {
         byte[] byteArray = response.toByteArray();
 
         // 反序列化,二进制数据
-        try {
-            ResponseOuterClass.Response newResponse = ResponseOuterClass.Response.parseFrom(byteArray);
-            System.out.println(newResponse.getData());
-            System.out.println(newResponse.getStatus());
-        } catch (Exception e) {
-        }
+        ResponseOuterClass.Response newResponse = ResponseOuterClass.Response.parseFrom(byteArray);
+        System.out.println(newResponse.getData());
+        System.out.println(newResponse.getStatus());
     }
 }
