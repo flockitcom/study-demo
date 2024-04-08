@@ -42,7 +42,7 @@ public class VolatileTest {
                     }
                     test.print();
                 }
-            }).start(); 
+            }).start();
         }
     }
 }

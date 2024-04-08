@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 /**
  * Stream可以试用 fliter过滤,map分散操作,reduce聚合操作
  * 过滤,Predicate(and,or)
+ *
  * @author: zhangqian
  * @date: 2020/8/26
  */

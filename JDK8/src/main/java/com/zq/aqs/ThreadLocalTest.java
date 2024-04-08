@@ -1,10 +1,8 @@
 package com.zq.aqs;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
-import java.util.concurrent.*;
-import java.util.stream.IntStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author zqian
@@ -17,7 +15,7 @@ public class ThreadLocalTest {
 
         ExecutorService service = Executors.newFixedThreadPool(2);
         for (int i = 0; i < 1000; i++) {
-            service.execute(()->{
+            service.execute(() -> {
                 System.out.println(integerThreadLocal.get());
             });
         }

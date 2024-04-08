@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 
 /**
  * 反射
+ *
  * @author zqian
  * @date 2021/1/15
  */
@@ -26,7 +27,7 @@ public class ReflectionDemo {
         User user = (User) userClass.newInstance();
         Method setName = userClass.getDeclaredMethod("setName", String.class);
 
-        setName.invoke(user,"张三");
+        setName.invoke(user, "张三");
         System.out.println(user);
 
     }
@@ -51,6 +52,7 @@ class Teacher extends Person {
         super.setName("老师");
     }
 }
+
 @ToString
 class User {
     private String name;
