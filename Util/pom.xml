@@ -42,6 +42,13 @@
             <artifactId>opencsv</artifactId>
         </dependency>
         <!-- openCsv end -->
+
+        <!-- MessagePack end -->
+        <dependency>
+            <groupId>org.msgpack</groupId>
+            <artifactId>msgpack</artifactId>
+        </dependency>
+        <!-- MessagePack end -->
     </dependencies>
 
 

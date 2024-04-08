@@ -1,9 +1,14 @@
 package base;
 
+import org.msgpack.annotation.Message;
+
+import java.io.Serializable;
+
 /**
  * 学生
  */
-public class Student {
+@Message
+public class Student implements Serializable {
     private String name;
     private String age;
 

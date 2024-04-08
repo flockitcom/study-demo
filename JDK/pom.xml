@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>JDK8</artifactId>
+    <artifactId>JDK</artifactId>
 
     <dependencies>
         <dependency>
@@ -21,11 +21,6 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-        <!-- guava   -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
