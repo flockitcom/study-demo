@@ -50,7 +50,7 @@ public class CSVUtil {
     }
 
     /**
-     * 数据生成csv文件
+     * csv文件生成数据
      */
     public static List<LinkedHashMap<String, Object>> formatDate() throws IOException, CsvValidationException {
         FileReader fileReader = new FileReader("abc.csv");
@@ -86,7 +86,7 @@ public class CSVUtil {
         map1.put("age", 18);
 
         LinkedHashMap<String, Object> map2 = new LinkedHashMap<>();
-        map2.put("name", "李四");
+        map2.put("name", "王15613151");
         map2.put("age", 20);
         list.add(map1);
         list.add(map2);
