@@ -74,10 +74,36 @@ public class SqlConvertUtil {
 
         //5.处理语句
         for (String s : parArr) {
-            int i = preparingStr.indexOf("?");
+            int i = findFirstUnquotedQuestionMark(preparingStr);
             preparingStr = preparingStr.substring(0, i) + s + preparingStr.substring(i + 1);
         }
         System.out.println(preparingStr);
         return preparingStr;
+    }
+
+    /**
+     * 查找字符串中第一个不在单引号内的?的下标
+     *
+     * @param str 输入字符串
+     * @return 第一个不在单引号内的?的下标，如果未找到则返回-1
+     */
+    public static int findFirstUnquotedQuestionMark(String str) {
+        boolean inSingleQuote = false; // 用于跟踪当前字符是否在单引号内
+
+        // 遍历字符串中的每个字符
+        for (int i = 0; i < str.length(); i++) {
+            char currentChar = str.charAt(i);
+
+            if (currentChar == '\'') {
+                // 遇到单引号字符时切换inSingleQuote的值
+                inSingleQuote = !inSingleQuote;
+            } else if (currentChar == '?' && !inSingleQuote) {
+                // 如果遇到字符?且当前不在单引号内，则返回当前下标
+                return i;
+            }
+        }
+
+        // 如果遍历完字符串后未找到符合条件的?，则返回-1
+        return -1;
     }
 }
