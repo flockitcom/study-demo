@@ -1,5 +1,7 @@
 package util;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * sql转换
  *
@@ -45,8 +47,16 @@ public class SqlConvertUtil {
         }
 
         //3.获取变量列表
-        int paramtersIndex = paramtersStr.indexOf(PARAMTERS) + PARAMTERS.length() + 1;
+        int paramtersIndex = Math.min(paramtersStr.indexOf(PARAMTERS) + PARAMTERS.length() + 1, paramtersStr.length());
         paramtersStr = paramtersStr.substring(paramtersIndex);
+
+        //4.获取sql语句
+        int preparingIndex = preparingStr.indexOf(PREPARING) + PREPARING.length() + 1;
+        preparingStr = preparingStr.substring(preparingIndex);
+        // 3.1 判断空参数
+        if (StringUtils.isBlank(paramtersStr)) {
+            return preparingStr;
+        }
         String[] parArr = paramtersStr.split("\\),");
         for (int i = 0; i < parArr.length; i++) {
             int leftBrackets = parArr[i].indexOf("(");
@@ -67,10 +77,6 @@ public class SqlConvertUtil {
                 parArr[i] = par;
             }
         }
-
-        //4.获取sql语句
-        int preparingIndex = preparingStr.indexOf(PREPARING) + PREPARING.length() + 1;
-        preparingStr = preparingStr.substring(preparingIndex);
 
         //5.处理语句
         for (String s : parArr) {
